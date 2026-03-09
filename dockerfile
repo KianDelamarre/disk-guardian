@@ -5,7 +5,7 @@ ENV DOCKER_CLI_VERSION=24.0.5
 ENV DISK_GUARDIAN_WORKDIR=/app
 
 # Install bash, curl, docker-cli (docker client only, no daemon)
-RUN apk add --no-cache bash curl docker-cli entr
+RUN apk add --no-cache bash curl docker-cli
 
 WORKDIR $DISK_GUARDIAN_WORKDIR
 

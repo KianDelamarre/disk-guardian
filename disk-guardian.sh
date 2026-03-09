@@ -12,6 +12,7 @@
 
 # Disk paths (space-separated string for env var)
 # Dynamically get all directories mounted under /check
+echo "disk-guardian running. disk guardian is a simply bash script to monitor disk space and send warnings, and stop specified containers when disk usage exceeds specific limits, defaults are 90% to notify and 95% to stop other contianer, notifications sent via webhooks  works with ntfy"
 diskPathsList=()
 for dir in /check/*; do
     # Only add if it exists and is a directory
@@ -66,15 +67,21 @@ stop_downloaders_and_notify() {
     local stoppedAny=false
     local disk=$1
     local usage=$2
+    local messsage
     for container in "${downloaderContainerNames[@]}"; do
         if [ "$(docker ps --filter "name=$container" --filter "status=running" -q)" ]; then
             docker stop "$container"
             stoppedAny=true
         fi
+    
     done
     if [ "$stoppedAny" = true ]; then
-        notifyStoppingContainers "$disk" "$usage" "Stopped downloaders due to high disk usage"
+        message="$disk $usage Stopped downloaders due to high disk usage"
+    else
+        message="$disk usege at $usage No containers to stop, check container list, something else may be causing drive overload"
     fi
+    notifyStoppingContainers "$message"
+
 }
 
 notify(){
@@ -103,7 +110,6 @@ check_disk_usage(){
 check_disks(){
     for disk in "$@"; do
         usage=$(check_disk_usage "$disk")
-
 
         if (( usage > warningThreshold )) && [ "${diskWarned[$disk]}" != "true" ]; then
             notify "$disk" "$usage"

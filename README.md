@@ -55,9 +55,8 @@ services:
       start_period: 40s
     restart: unless-stopped
     init: true
-
-
-```​
+```
+​
 
 ---
 

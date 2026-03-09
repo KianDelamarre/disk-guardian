@@ -21,7 +21,7 @@ Here's an example `docker-compose.yml` to get started:
 ```yaml
 services:
   disk-guardian:
-    image: disk-guardian:latest
+    image: kiansd/disk-guardian:latest
     container_name: disk-guardian
     environment:
       DOWNLOADER_CONTAINERS: "dashboard-dev idp-server"

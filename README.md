@@ -31,9 +31,9 @@ services:
       WEBHOOK_URL: "ntfy:80/disk-guardian"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home:/check/home:ro
+      #just mount the drives you want to monitor
+      - /home:/check/home:ro 
       - /mnt/drive1:/check/drive1:ro
-      - ./:/app
 
   ntfy:
     image: binwiederhier/ntfy

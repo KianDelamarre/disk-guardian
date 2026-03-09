@@ -1,0 +1,13 @@
+services:
+  disk-guardian:
+    image: disk-guardian:latest
+    container_name: disk-guardian
+    environment:
+      DOWNLOADER_CONTAINERS: "dashboard-dev idp-server"
+      POLLING_RATE: 5
+      WARNING_THRESHOLD: 42
+      STOPPING_THRESHOLD: 47
+      WEBHOOK_URL: "http://192.168.0.21:80/disk_guard"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home:/check/home:ro

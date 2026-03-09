@@ -15,5 +15,5 @@ COPY disk-guardian.sh .
 # Docker socket for stopping containers
 VOLUME ["/var/run/docker.sock:/var/run/docker.sock"]
 
-# CMD ["bash", "disk-guardian.sh"]
-CMD [ "sh", "poller.sh" ]
+CMD ["bash", "disk-guardian.sh"]
+# CMD [ "sh", "poller.sh" ]

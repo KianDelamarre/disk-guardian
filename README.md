@@ -92,38 +92,33 @@ State flags (`diskWarned` and `diskStopped`) prevent duplicate notifications and
 ## 🔔 Example ntfy Notification
 
 When thresholds are reached, notifications look like:
-`````````
+```
 2026-03-09 12:00:00 WARNING DRIVE USAGE ABOVE 20%
 Warning: Disk /check/home usage at 22%
-
 2026-03-09 12:01:00 CRITICAL WARNING DRIVE USAGE ABOVE 21%
 Disk /check/home usage at 23% — stopping downloaders due to high disk usage
-`````````​
+```
 
 ---
 
 ## 🛠️ Development & Deployment
 
 **Build the image:**
-````````bash
+```bash
 docker build -t disk-guardian:latest .
-```````​
+```
 
 **Start services:**
-``````bash
+```bash
 docker-compose up -d
-`````​
+```
 
 **Check logs for alerts:**
-````bash
+```bash
 docker logs -f disk-guardian
-```​
+```
 
 ---
 
 ## 🤝 Contributing
-
 - Open an issue for bugs or feature requests.
-```
-
----

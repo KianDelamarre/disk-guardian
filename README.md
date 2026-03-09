@@ -93,10 +93,10 @@ State flags (`diskWarned` and `diskStopped`) prevent duplicate notifications and
 
 When thresholds are reached, notifications look like:
 ```
-2026-03-09 12:00:00 WARNING DRIVE USAGE ABOVE 20%
-Warning: Disk /check/home usage at 22%
-2026-03-09 12:01:00 CRITICAL WARNING DRIVE USAGE ABOVE 21%
-Disk /check/home usage at 23% — stopping downloaders due to high disk usage
+2026-03-09 12:00:00 WARNING DRIVE USAGE ABOVE 90%
+Warning: Disk /check/home usage at 92%
+2026-03-09 12:01:00 CRITICAL WARNING DRIVE USAGE ABOVE 95%
+Disk /check/home usage at 97% — stopping downloaders due to high disk usage
 ```
 
 ---

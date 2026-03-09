@@ -171,8 +171,11 @@ verify_polling_rate(){
         exit 1
     fi
 
-    if awk "BEGIN {exit !($pollingRate < 1)}"; then
-        echo "WARNING: POLLING_RATE less than one second may cause high CPU usage: $pollingRate"
+    if awk "BEGIN {exit !($pollingRate < 0.5)}"; then
+        echo "POLLING_RATE too low, setting to 0.5s to avoid high CPU usage"
+        pollingRate=0.5
+    elif awk "BEGIN {exit !($pollingRate < 1)}"; then
+        echo "WARNING: POLLING_RATE less than 1s may cause high CPU usage: $pollingRate"
     fi
 }
 
@@ -206,11 +209,11 @@ done
 
 notify(){
     local message=$1
-    # JSON payload depends on the service
     echo "$message"
-
     if [ -n "$WEBHOOK_URL" ]; then
-        curl -s --max-time 5 -d "$message" "$WEBHOOK_URL" > /dev/null
+        if ! curl -s --max-time 5 -d "$message" "$WEBHOOK_URL" > /dev/null; then
+            echo "WARNING: Failed to send notification to $WEBHOOK_URL"
+        fi
     fi
 }
 
@@ -240,10 +243,13 @@ stop_downloaders_and_build_message() {
 # function checkDiskUsage(disk)
 check_disk_usage(){
     local disk_path=$1
-    local use
 
-    use=$(df -P "$disk_path" | awk 'NR==2 {gsub("%","",$5); print $5}')
-    echo "$use"
+    if [ ! -d "$disk_path" ]; then
+        echo "0"
+        return
+    fi
+
+    df -P "$disk_path" 2>/dev/null | awk 'NR==2 {gsub("%","",$5); print $5}'
 }
 
 

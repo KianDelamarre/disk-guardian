@@ -8,7 +8,7 @@ Disk Guardian is a lightweight Bash-based monitoring script that tracks disk usa
 
 - Monitor multiple directories for disk usage in real-time
 - Configurable warning and stopping thresholds
-- Sends alerts via webhooks (ntfy compatible)
+- Sends alerts via webhooks (ntfy compatible only)
 - Automatically stops designated Docker containers if disk usage reaches critical levels
 - Lightweight — no external dependencies beyond Docker and Bash
 
@@ -26,13 +26,13 @@ services:
     environment:
       DOWNLOADER_CONTAINERS: "dashboard-dev idp-server"
       POLLING_RATE: 5
-      WARNING_THRESHOLD: 20
-      STOPPING_THRESHOLD: 21
+      WARNING_THRESHOLD: 90
+      STOPPING_THRESHOLD: 95
       WEBHOOK_URL: "ntfy:80/disk-guardian"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home:/check/home:ro
-      - /media/kian/GAMES:/check/games:ro
+      - /mnt/drive1:/check/drive1:ro
       - ./:/app
 
   ntfy:
@@ -124,7 +124,6 @@ docker logs -f disk-guardian
 ## 🤝 Contributing
 
 - Open an issue for bugs or feature requests.
-- Pull requests are welcome — please follow clean Bash coding standards and update the README.
 ```
 
 ---

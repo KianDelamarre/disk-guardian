@@ -24,13 +24,13 @@ services:
     image: kiansd/disk-guardian:latest
     container_name: disk-guardian
     environment:
-      DOWNLOADER_CONTAINERS: "dashboard-dev idp-server"
+      DOWNLOADER_CONTAINERS: "sonarr qbittorrent"
       POLLING_RATE: 5
       WARNING_THRESHOLD: 90
       STOPPING_THRESHOLD: 95
       WEBHOOK_URL: "ntfy:80/disk-guardian"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock #important to allow the script to stop other docker containers
       #just mount the drives you want to monitor
       - /home:/check/home:ro 
       - /mnt/drive1:/check/drive1:ro

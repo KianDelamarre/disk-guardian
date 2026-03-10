@@ -66,7 +66,7 @@ Environment variables allow easy customization:
 
 | Variable | Default | Description |
 |---|---|---|
-| `DOWNLOADER_CONTAINERS` | `""` | Space-separated list of Docker containers to stop when disk usage exceeds the stopping threshold. |
+| `DOWNLOADER_CONTAINERS` | `""` | Space-separated list of Docker container names to stop when disk usage exceeds the stopping threshold. |
 | `POLLING_RATE` | `10` | Seconds between disk usage checks. |
 | `WARNING_THRESHOLD` | `90` | Disk usage percentage to trigger a warning notification. |
 | `STOPPING_THRESHOLD` | `95` | Disk usage percentage to stop containers. |

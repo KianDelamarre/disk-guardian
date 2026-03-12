@@ -10,7 +10,7 @@ Disk Guardian is a lightweight Bash-based monitoring script that tracks disk usa
 - Configurable warning and stopping thresholds
 - Sends alerts via webhooks (ntfy compatible only)
 - Automatically stops designated Docker containers if disk usage reaches critical levels
-- Lightweight — no external dependencies beyond Docker and Bash
+- Lightweight — no external dependencies beyond Docker and Bash. ~6MB container image
 
 ---
 

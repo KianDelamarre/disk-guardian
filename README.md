@@ -2,6 +2,9 @@
 
 Disk Guardian is a lightweight Bash-based monitoring script that tracks disk usage, sends notifications, and can automatically stop specified Docker containers when disk usage exceeds defined thresholds. It's designed to work with webhook services like [ntfy](https://ntfy.sh) for real-time alerts.
 
+[![Docker Image Size](https://img.shields.io/docker/image-size/kiansd/disk-guardian/latest)](https://hub.docker.com/r/kiansd/disk-guardian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kiansd/disk-guardian)](https://hub.docker.com/r/kiansd/disk-guardian)
+
 ---
 
 ## ✨ Features
@@ -56,7 +59,13 @@ services:
     restart: unless-stopped
     init: true
 ```
-​
+
+---
+## 📦 Docker Image
+
+The official image is available on **Docker Hub:**
+
+👉 [kiansd/disk-guardian](https://hub.docker.com/r/kiansd/disk-guardian)
 
 ---
 
